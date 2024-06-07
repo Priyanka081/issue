@@ -51,9 +51,8 @@ body:
     validations:
       required: true
   - type: checkboxes
-  - type: 終了条件
     attributes:
-      label: Code of Conduct
+      label: 終了条件
       options:
         - label: I agree to follow this project's Code of Conduct
         - label: 事前申請
