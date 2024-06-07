@@ -6,12 +6,6 @@ projects: ["project2024"]
 body:
   - type: input
     attributes:
-      label: 出発日
-      placeholder: 例：20240101
-    validations:
-      required: true
-  - type: input
-    attributes:
       label: 期間
       placeholder: 例：20240101 - 20240105
     validations:
@@ -56,13 +50,3 @@ body:
         - SM24-GK-016-00_AI
     validations:
       required: true
-  - type: checkboxes
-    attributes:
-      label: 終了条件
-      options:
-        - label: 事前申請
-          value: 事前申請
-        - label: 経費精算
-          value: 経費精算
-        - label: 目的と成果の記入
-          value: 目的と成果の記入
