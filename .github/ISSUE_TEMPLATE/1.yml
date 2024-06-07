@@ -67,5 +67,5 @@ body:
       options:
         - label: 出張事前申請書 URL
         - label: 出張精算申請書 URL
-          required: true
+         
 
