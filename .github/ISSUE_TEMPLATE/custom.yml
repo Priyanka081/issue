@@ -1,58 +1,59 @@
-template:
-  - name: "🚄 Business Trip Template"
-    description: "Milestone: Business Trip"
-    title: "[Business Trip]"
-    labels: ["owner: tokuhara-j"]
-    projects: ["project2024"]
+name: "🚄 出張申請テンプレート"
+description: "milestone: Business Trip"
+title: "[出張申請]"
+labels: ["owner: tokuhara-j"]
+projects: ["project2024"]
 
-    body:
-      - type: input
-        attributes:
-          label: Departure Date
-          placeholder: e.g., 20240101
-        validations:
-          required: true
-      - type: input
-        attributes:
-          label: Business Trip Name
-          placeholder: e.g., NABLAS visit, International Robotics Expo
-        validations:
-          required: true
-      - type: dropdown
-        attributes:
-          label: Traveler
-          options:
-            - taikiinoue45
-            - duke029
-            - kasa09
-            - Shuiiku20
-            - tokuhara-j
-            - PranavKai
-            - shimoi226
-        default: 0  # Default index
-        validations:
-          required: true
-      - type: input
-        attributes:
-          label: Purpose
-          placeholder: e.g., Meeting attendance, Client visit
-        validations:
-          required: true
-      - type: input
-        attributes:
-          label: Duration
-          placeholder: e.g., 20240101 - 20240105
-        validations:
-          required: true
-      - type: input
-        attributes:
-          label: Departure Location
-          placeholder: e.g., Tokyo
-      - type: input
-        attributes:
-          label: End Condition
-          placeholder: e.g., Reached home at 8:00 pm
-      - type: input
-        attributes:
-          label: Budget Code (optional)
-          placeholder: e.g., ABC-123
+body:
+  - type: input
+    attributes:
+      label: 出発日
+      placeholder: 例：20240101
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 出張名
+      placeholder: 例：NABLAS訪問、国際ロボティクスエキスポ
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 出張者
+      options:
+        - taikiinoue45
+        - duke029
+        - kasa09
+        - Shuiiku20
+        - tokuhara-j
+        - PranavKai
+        - shimoi226
+      default: 0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 目的
+      placeholder: 例：会議出席、顧客訪問
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 期間
+      placeholder: 例：20240101 - 20240105
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 出発地
+      placeholder: 例：東京
+  - type: input
+    attributes:
+      label: 帰宅条件
+      placeholder: 例：午後8時に帰宅
+  - type: input
+    attributes:
+      label: 予算コード（オプション）
+      placeholder: 例：ABC-123
+    validations:
+      required: true
