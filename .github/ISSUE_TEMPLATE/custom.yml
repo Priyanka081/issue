@@ -1,4 +1,4 @@
-templates:
+template:
   - name: "🚄 Business Trip Template"
     description: "Milestone: Business Trip"
     title: "[Business Trip]"
