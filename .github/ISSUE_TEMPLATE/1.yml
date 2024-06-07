@@ -1,4 +1,68 @@
-終了条件: false
-事前申請: false
-経費精算: false
-目的と成果の記入: false
+name: "🚄 出張申請テンプレート"
+description: "milestone: Business Trip"
+title: "[出張申請]"
+labels: ["owner: tokuhara-j"]
+projects: ["project2024"]
+body:
+  - type: input
+    attributes:
+      label: 出発日
+      placeholder: 例：20240101
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 期間
+      placeholder: 例：20240101 - 20240105
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 出張名
+      placeholder: 例：NABLAS訪問、国際ロボティクスエキスポ
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 出張者
+      options:
+        - taikiinoue45
+        - duke029
+        - kasa09
+        - Shuiiku20
+        - tokuhara-j
+        - PranavKai
+        - shimoi226
+      default: 0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 目的
+      placeholder: 例：会議出席、顧客訪問
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 予算コード（オプション）
+      placeholder: 例：ABC-123
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 使用する経費/稟議を選択してください
+      options:
+        - SX24-SU-003-00_AI
+        - SM24-GK-016-00_AI
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: 終了条件
+      options:
+        - label: 事前申請
+          value: 事前申請
+        - label: 経費精算
+          value: 経費精算
+        - label: 目的と成果の記入
+          value: 目的と成果の記入
