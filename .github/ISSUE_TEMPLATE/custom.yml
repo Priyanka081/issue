@@ -3,7 +3,6 @@ description: "milestone: Business Trip"
 title: "[出張申請]"
 labels: ["owner: tokuhara-j"]
 projects: ["project2024"]
-
 body:
   - type: input
     attributes:
@@ -17,53 +16,47 @@ body:
       placeholder: 例：20240101 - 20240105
     validations:
       required: true
-      value: 20240101 - 20240105
   - type: input
     attributes:
       label: 出張名
       placeholder: 例：NABLAS訪問、国際ロボティクスエキスポ
     validations:
       required: true
-      value: NABLAS訪問
   - type: dropdown
     attributes:
       label: 出張者
       options:
-        taikiinoue45: taikiinoue45
-        duke029: duke029
-        kasa09: kasa09
-        Shuiiku20: Shuiiku20
-        tokuhara-j: tokuhara-j
-        PranavKai: PranavKai
-        shimoi226: shimoi226
-      default: tokuhara-j
+        - taikiinoue45
+        - duke029
+        - kasa09
+        - Shuiiku20
+        - tokuhara-j
+        - PranavKai
+        - shimoi226
+      default: 0
     validations:
       required: true
-      value: tokuhara-j
   - type: input
     attributes:
       label: 目的
       placeholder: 例：会議出席、顧客訪問
     validations:
       required: true
-      value: 会議出席
   - type: input
     attributes:
       label: 予算コード（オプション）
       placeholder: 例：ABC-123
     validations:
       required: true
-      value: ABC-123
   - type: dropdown
     attributes:
       label: 使用する経費/稟議を選択してください
+      label: どの経費/稟議を使うかを追加
       options:
-        SX24-SU-003-00_AI: SX24-SU-003-00_AI
-        SM24-GK-016-00_AI: SM24-GK-016-00_AI
-      placeholder: "Select one"
+        - SX24-SU-003-00_AI
+        - SM24-GK-016-00_AI
     validations:
       required: true
-      value: SX24-SU-003-00_AI
   - type: checkboxes
     attributes:
       label: 終了条件
