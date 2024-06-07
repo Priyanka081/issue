@@ -1,10 +1,80 @@
----
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
+templates:
+  - name: "🚄 Business Trip Template"
+    description: "milestone: Business Trip"
+    title: "[Business Trip]"
+    labels: ["owner: tokuhara-j"]
+    projects: ["project2024"]
 
----
+    body:
+      - type: input
+        attributes:
+          label: Departure Date
+          placeholder: e.g., 20240101
+        validations:
+          required: true
+      - type: input
+        attributes:
+          label: Business Trip Name
+          placeholder: e.g., NABLAS visit, International Robotics Expo
+        validations:
+          required: true
+      - type: dropdown
+        attributes:
+          label: Traveler
+          options:
+            - taikiinoue45
+            - duke029
+            - kasa09
+            - Shuiiku20
+            - tokuhara-j
+            - PranavKai
+            - shimoi226
+        default: 0  # Default index
+        validations:
+          required: true
+      - type: input
+        attributes:
+          label: Purpose
+          placeholder: e.g., Meeting attendance, Client visit
+        validations:
+          required: true
+      - type: input
+        attributes:
+          label: Duration
+          placeholder: e.g., 20240101 - 20240105
+        validations:
+          required: true
+      - type: input
+        attributes:
+          label: Departure Location
+          placeholder: e.g., Tokyo
+      - type: input
+        attributes:
+          label: End Condition
+          placeholder: e.g. Reached home at 8:00 pm
+      - type: input
+        attributes:
+          label: Budget Code (optional)
+          placeholder: e.g., ABC-123
+        validations:
+          required: true
 
+  - name: "出張申請 Template"
+    about: 'SAP での申請'
+    title: '[出張申請] - '
+    labels: ['owner: tokuhara-j']
+    assignees: ''
 
+    body:
+      - type: input
+        attributes:
+          label: SAP Pre-trip Approval Form URL
+          placeholder: "[出張精算申請書 URL](https://somic.box.com/s/puu0nxmbkka55x64ywts0m0cnqpmyaqc)："
+        validations:
+          required: true
+      - type: input
+        attributes:
+          label: SAP Expense Reimbursement Form URL
+          placeholder: "[出張事前申請書 URL](https://somic.box.com/s/84b2yugqo2sfixbzr8yzumzd2sxtk2a1)"
+        validations:
+          required: true
