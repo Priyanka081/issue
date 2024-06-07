@@ -48,12 +48,12 @@ body:
       options:
         - SX24-SU-003-00_AI
         - SM24-GK-016-00_AI
+      default: 0
     validations:
       required: true
   - type: checkboxes
     attributes:
       label: 終了条件
       options:
-        - label: "I agree to follow this project's Code of Conduct"
         - label: "事前申請、経費精算、目的と成果の記入"
           required: true
