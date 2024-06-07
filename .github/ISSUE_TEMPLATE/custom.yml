@@ -51,7 +51,7 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: 使用する経費/稟議を選択してください
+      label: どの経費/稟議を使うかを追加
       options:
         - SX24-SU-003-00_AI
         - SM24-GK-016-00_AI
