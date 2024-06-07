@@ -54,8 +54,6 @@ body:
     attributes:
       label: 終了条件
       options:
-        - label: I agree to follow this project's Code of Conduct
-        - label: 事前申請
-                 経費精算
-                 目的と成果の記入
+        - label: "I agree to follow this project's Code of Conduct"
+        - label: "事前申請、経費精算、目的と成果の記入"
           required: true
