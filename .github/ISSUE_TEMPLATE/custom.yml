@@ -55,6 +55,5 @@ body:
         - 事前申請
           経費精算
           目的と成果の記入 
-(Pre-approval, Expense reimbursement, Purpose and outcomes documented)
     validations:
       required: true
