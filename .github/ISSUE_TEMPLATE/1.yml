@@ -6,19 +6,19 @@ projects: ["project2024"]
 body:
   - type: input
     attributes:
-      label: 期間 (Duration)
+      label: 期間
       placeholder: 例：20240101 - 20240105
     validations:
       required: true
   - type: input
     attributes:
-      label: 出張名 (Trip Name)
+      label: 出張名
       placeholder: 例：NABLAS訪問、国際ロボティクスエキスポ
     validations:
       required: true
   - type: dropdown
     attributes:
-      label: 出張者 (Traveler)
+      label: 出張者
       options:
         - taikiinoue45
         - duke029
@@ -32,29 +32,31 @@ body:
       required: true
   - type: input
     attributes:
-      label: 目的 (Purpose)
+      label: 目的
       placeholder: 例：会議出席、顧客訪問
     validations:
       required: true
   - type: input
     attributes:
-      label: 予算コード（オプション） (Budget Code - Optional)
+      label: 予算コード（オプション）
       placeholder: 例：ABC-123
+    validations:
+      required: true
   - type: dropdown
     attributes:
-      label: 使用する経費/稟議を選択してください (Select Expense/Approval)
+      label: 使用する経費/稟議を選択してください
       options:
         - SX24-SU-003-00_AI
         - SM24-GK-016-00_AI
-       default: 0
     validations:
       required: true
-  - type: dropdown
+  - type: checkboxes
+  - type: 終了条件
     attributes:
-      label: 終了条件 (Completion Criteria)
+      label: Code of Conduct
       options:
-        - 事前申請
-          経費精算
-          目的と成果の記入 
-    validations:
-      required: true
+        - label: I agree to follow this project's Code of Conduct
+        - label: 事前申請
+                 経費精算
+                 目的と成果の記入
+          required: true
