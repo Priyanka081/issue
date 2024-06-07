@@ -1,5 +1,4 @@
-template:
-  - name: "🚄 Business Trip Template"
+- name: "🚄 Business Trip Template"
     description: "Milestone: Business Trip"
     title: "[Business Trip]"
     labels: ["owner: tokuhara-j"]
