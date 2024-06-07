@@ -1,6 +1,6 @@
 templates:
   - name: "🚄 Business Trip Template"
-    description: "milestone: Business Trip"
+    description: "Milestone: Business Trip"
     title: "[Business Trip]"
     labels: ["owner: tokuhara-j"]
     projects: ["project2024"]
@@ -51,19 +51,17 @@ templates:
       - type: input
         attributes:
           label: End Condition
-          placeholder: e.g. Reached home at 8:00 pm
+          placeholder: e.g., Reached home at 8:00 pm
       - type: input
         attributes:
           label: Budget Code (optional)
           placeholder: e.g., ABC-123
-        validations:
-          required: true
 
   - name: "出張申請 Template"
-    about: 'SAP での申請'
-    title: '[出張申請] - '
-    labels: ['owner: tokuhara-j']
-    assignees: ''
+    description: "SAP での申請"
+    title: "[出張申請] - "
+    labels: ["owner: tokuhara-j"]
+    assignees: ""
 
     body:
       - type: input
