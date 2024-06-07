@@ -62,8 +62,8 @@ body:
   - type: checkboxes
     attributes:
       label: 'SAP での申請'
-      description:  by checking this,[出張事前申請書 URL](https://somic.box.com/s/84b2yugqo2sfixbzr8yzumzd2sxtk2a1). 
-                    [出張事前申請書 URL] (https://somic.box.com/s/puu0nxmbkka55x64ywts0m0cnqpmyaqc).
+      description: by checking this,[出張事前申請書 URL](https://somic.box.com/s/84b2yugqo2sfixbzr8yzumzd2sxtk2a1). 
+                    [出張事前申請書 URL](https://somic.box.com/s/puu0nxmbkka55x64ywts0m0cnqpmyaqc).
       options:
         - label: 出張事前申請書 URL
         - label: 出張精算申請書 URL
