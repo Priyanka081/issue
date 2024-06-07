@@ -21,14 +21,14 @@ body:
     attributes:
       label: 出張者
       options:
-        - taikiinoue45
-        - duke029
-        - kasa09
-        - Shuiiku20
-        - tokuhara-j
-        - PranavKai
-        - shimoi226
-      default: 0
+        taikiinoue45: taikiinoue45
+        duke029: duke029
+        kasa09: kasa09
+        Shuiiku20: Shuiiku20
+        tokuhara-j: tokuhara-j
+        PranavKai: PranavKai
+        shimoi226: shimoi226
+      default: tokuhara-j
     validations:
       required: true
   - type: input
@@ -47,18 +47,18 @@ body:
     attributes:
       label: 使用する経費/稟議を選択してください
       options:
-        - SX24-SU-003-00_AI
-        - SM24-GK-016-00_AI
-      default: 0
+        SX24-SU-003-00_AI: SX24-SU-003-00_AI
+        SM24-GK-016-00_AI: SM24-GK-016-00_AI
+      placeholder: "Select one"
     validations:
       required: true
   - type: checkboxes
     attributes:
       label: 終了条件
       options:
-        - 事前申請
-        - 経費精算
-        - 目的と成果の記入
+        事前申請: 事前申請
+        経費精算: 経費精算
+        目的と成果の記入: 目的と成果の記入
       default: []
     validations:
       required: true
