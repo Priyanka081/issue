@@ -48,12 +48,12 @@ body:
         - SM24-GK-016-00_AI
     validations:
       required: true
-  - type: dropdown
+  - type: Checkbox
     attributes:
       label: 終了条件 (Completion Criteria)
       options:
         - 事前申請
-          経費精算
-          目的と成果の記入 
+        - 経費精算
+        - 目的と成果の記入 
     validations:
       required: true
