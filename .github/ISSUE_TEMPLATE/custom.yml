@@ -48,7 +48,7 @@ body:
         - SM24-GK-016-00_AI
     validations:
       required: true
-  - type: Checkbox
+  - type: checkbox
     attributes:
       label: 終了条件 (Completion Criteria)
       options:
@@ -56,4 +56,5 @@ body:
         - 経費精算
         - 目的と成果の記入 
     validations:
-      required: true
+       required: true
+
