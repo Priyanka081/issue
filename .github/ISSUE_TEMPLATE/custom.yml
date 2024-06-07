@@ -46,6 +46,7 @@ body:
       options:
         - SX24-SU-003-00_AI
         - SM24-GK-016-00_AI
+      default: 0
     validations:
       required: true
   - type: checkbox
