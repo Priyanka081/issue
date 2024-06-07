@@ -55,5 +55,7 @@ body:
     attributes:
       label: 終了条件
       options:
-        - label: "事前申請、経費精算、目的と成果の記入"
+        - label: 事前申請
+        - label: 経費精算
+        - label: 目的と成果の記入
           required: true
