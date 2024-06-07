@@ -66,5 +66,3 @@ body:
           value: 経費精算
         - label: 目的と成果の記入
           value: 目的と成果の記入
-    validations:
-      required: true
