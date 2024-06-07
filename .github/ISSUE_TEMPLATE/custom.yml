@@ -3,6 +3,7 @@ description: "milestone: Business Trip"
 title: "[出張申請]"
 labels: ["owner: tokuhara-j"]
 projects: ["project2024"]
+
 body:
   - type: input
     attributes:
@@ -51,11 +52,19 @@ body:
   - type: dropdown
     attributes:
       label: 使用する経費/稟議を選択してください
-      label: どの経費/稟議を使うかを追加
       options:
         - SX24-SU-003-00_AI
         - SM24-GK-016-00_AI
       default: []
-      default: 0
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: 終了条件
+      options:
+        事前申請: 事前申請
+        経費精算: 経費精算
+        目的と成果の記入: 目的と成果の記入
+      default: []
     validations:
       required: true
