@@ -49,13 +49,13 @@ body:
       placeholder: 例：ABC-123
     validations:
       required: true
-  - type: dropdown
+  - type: checkboxes
     attributes:
-      label: どの経費/稟議を使うかを追加
+      label: 終了条件
       options:
-        - SX24-SU-003-00_AI
-        - SM24-GK-016-00_AI
+        事前申請: 事前申請
+        経費精算: 経費精算
+        目的と成果の記入: 目的と成果の記入
       default: []
-      default: 0
     validations:
       required: true
