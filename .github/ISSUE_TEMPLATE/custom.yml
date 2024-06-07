@@ -7,6 +7,12 @@ projects: ["project2024"]
 body:
   - type: input
     attributes:
+      label: 出発日
+      placeholder: 例：20240101
+    validations:
+      required: true
+  - type: input
+    attributes:
       label: 期間
       placeholder: 例：20240101 - 20240105
     validations:
@@ -41,5 +47,24 @@ body:
     attributes:
       label: 予算コード（オプション）
       placeholder: 例：ABC-123
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: 使用する経費/稟議を選択してください
+      options:
+        - SX24-SU-003-00_AI
+        - SM24-GK-016-00_AI
+      default: []
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: 終了条件
+      options:
+        - 事前申請
+        - 経費精算
+        - 目的と成果の記入
+      default: []
     validations:
       required: true
