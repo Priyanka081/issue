@@ -57,22 +57,3 @@ template:
           label: Budget Code (optional)
           placeholder: e.g., ABC-123
 
-  - name: "出張申請 Template"
-    description: "SAP での申請"
-    title: "[出張申請] - "
-    labels: ["owner: tokuhara-j"]
-    assignees: ""
-
-    body:
-      - type: input
-        attributes:
-          label: SAP Pre-trip Approval Form URL
-          placeholder: "[出張精算申請書 URL](https://somic.box.com/s/puu0nxmbkka55x64ywts0m0cnqpmyaqc)："
-        validations:
-          required: true
-      - type: input
-        attributes:
-          label: SAP Expense Reimbursement Form URL
-          placeholder: "[出張事前申請書 URL](https://somic.box.com/s/84b2yugqo2sfixbzr8yzumzd2sxtk2a1)"
-        validations:
-          required: true
