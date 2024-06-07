@@ -7,12 +7,6 @@ projects: ["project2024"]
 body:
   - type: input
     attributes:
-      label: 出発日
-      placeholder: 例：20240101
-    validations:
-      required: true
-  - type: input
-    attributes:
       label: 期間
       placeholder: 例：20240101 - 20240105
     validations:
