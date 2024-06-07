@@ -13,6 +13,12 @@ body:
       required: true
   - type: input
     attributes:
+      label: 期間
+      placeholder: 例：20240101 - 20240105
+    validations:
+      required: true
+  - type: input
+    attributes:
       label: 出張名
       placeholder: 例：NABLAS訪問、国際ロボティクスエキスポ
     validations:
@@ -37,20 +43,6 @@ body:
       placeholder: 例：会議出席、顧客訪問
     validations:
       required: true
-  - type: input
-    attributes:
-      label: 期間
-      placeholder: 例：20240101 - 20240105
-    validations:
-      required: true
-  - type: input
-    attributes:
-      label: 出発地
-      placeholder: 例：東京
-  - type: input
-    attributes:
-      label: 帰宅条件
-      placeholder: 例：午後8時に帰宅
   - type: input
     attributes:
       label: 予算コード（オプション）
