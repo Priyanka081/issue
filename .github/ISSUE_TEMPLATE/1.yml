@@ -1,7 +1,60 @@
-prerequisites:
-  - Can you reproduce the problem in safe mode?
-  - Are you running the latest version?
-  - Did you check the debugging guide?
-  - Did you check the FAQs on Discuss?
-  - Are you reporting to the correct repository?
-  - Did you perform a cursory search?
+name: "🚄 出張申請テンプレート"
+description: "milestone: Business Trip"
+title: "[出張申請]"
+labels: ["owner: tokuhara-j"]
+projects: ["project2024"]
+body:
+  - type: input
+    attributes:
+      label: 期間 (Duration)
+      placeholder: 例：20240101 - 20240105
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 出張名 (Trip Name)
+      placeholder: 例：NABLAS訪問、国際ロボティクスエキスポ
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 出張者 (Traveler)
+      options:
+        - taikiinoue45
+        - duke029
+        - kasa09
+        - Shuiiku20
+        - tokuhara-j
+        - PranavKai
+        - shimoi226
+      default: 0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 目的 (Purpose)
+      placeholder: 例：会議出席、顧客訪問
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 予算コード（オプション） (Budget Code - Optional)
+      placeholder: 例：ABC-123
+  - type: dropdown
+    attributes:
+      label: 使用する経費/稟議を選択してください (Select Expense/Approval)
+      options:
+        - SX24-SU-003-00_AI
+        - SM24-GK-016-00_AI
+       default: 0
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 終了条件 (Completion Criteria)
+      options:
+        - 事前申請
+          経費精算
+          目的と成果の記入 
+    validations:
+      required: true
