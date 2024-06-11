@@ -15,7 +15,6 @@ jobs:
             const { data: runs } = await github.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_file_name: '.github/workflows/sample_workflow.yml', // Replace with your workflow file name
               status: 'completed',
               conclusion: 'failure'
             });
