@@ -1,0 +1,247 @@
+name: format-template-issues
+on:
+  issues:
+    types: [opened]
+jobs:
+  format-template-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Format template issues
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        shell: python
+        run: |
+          import os
+          from typing import Dict, List
+
+          import requests
+
+
+          def str_to_dict(body: str) -> Dict[str, str]:
+              di: Dict[str, str] = {}
+              for line in body.split("\n"):
+                  if line == "":
+                      continue
+                  elif line.startswith("### "):
+                      key = line.replace("### ", "")
+                      di[key] = ""
+                  else:
+                      di[key] = line
+              return di
+
+
+          def get_issues(repository: str, github_token: str) -> List[dict]:
+              issues = []
+              page = 1
+              while True:
+                  url = f"https://api.github.com/repos/{repository}/issues?state=all&page={page}"
+                  headers = {"Authorization": f"Bearer {github_token}"}
+                  response = requests.get(url, headers=headers)
+                  page_issues = response.json()
+                  if not page_issues:
+                      break
+                  issues.extend(page_issues)
+                  page += 1
+              return issues
+
+          def update_issue(repository: str, github_token: str, issue_number: int, title: str, milestone: int, body: str) -> None:
+              url = f"https://api.github.com/repos/{repository}/issues/{issue_number}"
+              headers = {"Authorization": f"Bearer {github_token}"}
+              data = {"title": title, "milestone": milestone, "body": body}
+              response = requests.patch(url, headers=headers, json=data)
+              if response.status_code != 200:
+                  print(f"Failed to update issue: {response.content}")
+
+
+          def main() -> None:
+              issue_title = os.getenv("ISSUE_TITLE")
+              issue_body = str_to_dict(os.getenv("ISSUE_BODY"))
+              issue_number = os.getenv("ISSUE_NUMBER")
+              github_token = os.getenv("GITHUB_TOKEN")
+              repository = os.getenv("GITHUB_REPOSITORY")
+
+              if issue_title == "[出張]":
+                  start_date = issue_body["出張開始日"]
+                  business_trip_name = issue_body["出張名"]
+                  traveler = issue_body["出張者"]
+                  new_title = f"[出張] - {start_date} - {business_trip_name}"
+                  new_milestone = 3  # https://github.com/SOMIC-MANAGEMENT-HOLDINGS/todo2024/milestone/3
+                  new_body = "\n".join(
+                      [
+                          f"- 出張開始日：{start_date}",
+                          f"- 出張名：{business_trip_name}",
+                          f"- 出張者：{traveler}",
+                          f"",
+                          f"## 目的",
+                          f"",
+                          f"## 成果",
+                      ]
+                  )
+                  update_issue(repository, github_token, issue_number, new_title, new_milestone, new_body)
+
+              elif issue_title == "[一般経費]":
+                  vendor = issue_body["購買先"]
+                  product = issue_body["購買名"]
+                  assignee = issue_body["担当者"]
+
+                  issues = get_issues(repository, github_token)
+                  count = sum(1 for issue in issues if ("[一般経費]" in issue["title"]) or ("[一般購買]" in issue["title"]) or ("[請求書購買]" in issue["title"]))
+                  purchase_id = f"2024{count:04}"
+
+                  purchase_id_vendor_product = f"{purchase_id} - {vendor} - {product}"
+
+                  new_title = f"{purchase_id_vendor_product} - [一般経費]"
+                  new_milestone = 2  # https://github.com/SOMIC-MANAGEMENT-HOLDINGS/todo2024/milestone/2
+                  new_body = "\n".join(
+                      [
+                          f"- 購買ID：{purchase_id}",
+                          f"- 購買先：{vendor}",
+                          f"- 購買名：{product}",
+                          f"- 担当者：{assignee}",
+                          f"",
+                          f"## BOX保存先",
+                          f"### 親フォルダ",
+                          f"- [x] 01_Internal_032_50AI開発室/2024年度/経費_一般",
+                          f"https://somic.box.com/s/kevgth5btfuhfrny5hc6zmth4vefr2fp",
+                          f"### フォルダ",
+                          f"- [ ] {purchase_id_vendor_product} - {assignee}",
+                          f"https://somic.box.com/フォルダへのURLを貼り付けて下さい",
+                          f"",
+                          f"## 発注処理",
+                          f"### 必須",
+                          f"- [ ] 発注処理 - 見積書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 発注処理 - 注文書 - {purchase_id_vendor_product}.pdf",
+                          f"",
+                          f"## 取引完了処理",
+                          f"### 必須",
+                          f"- [ ] 取引完了処理 - 請求書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 支払申請書 - {purchase_id_vendor_product}.pdf",
+                          f"### その他",
+                          f"- [ ] 取引完了処理 - 納品書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 受領書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 検収書 - {purchase_id_vendor_product}.pdf",
+                      ]
+                  )
+                  update_issue(repository, github_token, issue_number, new_title, new_milestone, new_body)
+
+              elif issue_title == "[一般購買]":
+                  ringi = issue_body["りんぎ"]
+                  vendor = issue_body["購買先"]
+                  product = issue_body["購買名"]
+                  assignee = issue_body["担当者"]
+
+                  issues = get_issues(repository, github_token)
+                  count = sum(1 for issue in issues if ("[一般経費]" in issue["title"]) or ("[一般購買]" in issue["title"]) or ("[請求書購買]" in issue["title"]))
+                  purchase_id = f"2024{count:04}"
+
+                  if ringi == "SM24-GK-016-00_AI事業化および先進技術の研究・開発":
+                      box_url = "- [x] SM24-GK-016-00_AI事業化および先進技術の研究・開発\nhttps://somic.box.com/s/goh5wwvfiguaqle2qdfx3875gmr0y4vf"
+                  elif ringi == "SX24-SU-002-00_AI外観検査機(試作機)の製作費用":
+                      box_url = "- [x] SX24-SU-002-00_AI外観検査機(試作機)の製作費用\nhttps://somic.box.com/s/gcuy3pcvkoz8pgmz3rs61sj357skfwum"
+                  elif ringi == "SX24-SU-003-00_AI外観検査機の量産化費用":
+                      box_url = "- [x] SX24-SU-003-00_AI外観検査機の量産化費用\nhttps://somic.box.com/s/zbwt9a7ztr0ehs1lzfwet1vaacpyzfa7"
+                  else:
+                      print(f"Undefined ringi: {ringi}")
+
+                  purchase_id_vendor_product = f"{purchase_id} - {vendor} - {product}"
+
+                  new_title = f"{purchase_id_vendor_product} - [一般購買]"
+                  new_milestone = 2  # https://github.com/SOMIC-MANAGEMENT-HOLDINGS/todo2024/milestone/2
+                  new_body = "\n".join(
+                      [
+                          f"- りんぎ：{ringi}",
+                          f"- 購買ID：{purchase_id}",
+                          f"- 購買先：{vendor}",
+                          f"- 購買名：{product}",
+                          f"- 担当者：{assignee}",
+                          f"",
+                          f"## BOX保存先",
+                          f"### 親フォルダ",
+                          f"{box_url}",
+                          f"### フォルダ",
+                          f"- [ ] {purchase_id_vendor_product} - {assignee}",
+                          f"https://somic.box.com/フォルダへのURLを貼り付けて下さい",
+                          f"",
+                          f"## 発注処理",
+                          f"### 必須",
+                          f"- [ ] 発注処理 - 見積書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 発注処理 - 注文書 - {purchase_id_vendor_product}.pdf",
+                          f"### その他",
+                          f"- [ ] 発注処理 - 機番登録申請書 - {purchase_id_vendor_product}.pdf",
+                          f"",
+                          f"## 取引完了処理",
+                          f"### その他",
+                          f"- [ ] 取引完了処理 - 完成報告書 - {purchase_id_vendor_product}.pdf",
+                      ]
+                  )
+                  update_issue(repository, github_token, issue_number, new_title, new_milestone, new_body)
+
+              elif issue_title == "[請求書購買]":
+                  ringi = issue_body["りんぎ"]
+                  vendor = issue_body["購買先"]
+                  product = issue_body["購買名"]
+                  assignee = issue_body["担当者"]
+
+                  issues = get_issues(repository, github_token)
+                  count = sum(1 for issue in issues if ("[一般経費]" in issue["title"]) or ("[一般購買]" in issue["title"]) or ("[請求書購買]" in issue["title"]))
+                  purchase_id = f"2024{count:04}"
+
+                  if ringi == "SM24-GK-016-00_AI事業化および先進技術の研究・開発":
+                      box_url = "- [x] SM24-GK-016-00_AI事業化および先進技術の研究・開発\nhttps://somic.box.com/s/goh5wwvfiguaqle2qdfx3875gmr0y4vf"
+                  elif ringi == "SX24-SU-002-00_AI外観検査機(試作機)の製作費用":
+                      box_url = "- [x] SX24-SU-002-00_AI外観検査機(試作機)の製作費用\nhttps://somic.box.com/s/gcuy3pcvkoz8pgmz3rs61sj357skfwum"
+                  elif ringi == "SX24-SU-003-00_AI外観検査機の量産化費用":
+                      box_url = "- [x] SX24-SU-003-00_AI外観検査機の量産化費用\nhttps://somic.box.com/s/zbwt9a7ztr0ehs1lzfwet1vaacpyzfa7"
+                  else:
+                      print(f"Undefined ringi: {ringi}")
+
+                  purchase_id_vendor_product = f"{purchase_id} - {vendor} - {product}"
+
+                  new_title = f"{purchase_id_vendor_product} - [請求書購買]"
+                  new_milestone = 2  # https://github.com/SOMIC-MANAGEMENT-HOLDINGS/todo2024/milestone/2
+                  new_body = "\n".join(
+                      [
+                          f"- りんぎ：{ringi}",
+                          f"- 購買ID：{purchase_id}",
+                          f"- 購買先：{vendor}",
+                          f"- 購買名：{product}",
+                          f"- 担当者：{assignee}",
+                          f"",
+                          f"## BOX保存先",
+                          f"### 親フォルダ",
+                          f"{box_url}",
+                          f"### フォルダ",
+                          f"- [ ] {purchase_id_vendor_product} - {assignee}",
+                          f"https://somic.box.com/フォルダへのURLを貼り付けて下さい",
+                          f"",
+                          f"## 発注処理",
+                          f"### 必須",
+                          f"- [ ] 発注処理 - 見積書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 発注処理 - 注文書 - {purchase_id_vendor_product}.pdf",
+                          f"### その他",
+                          f"- [ ] 発注処理 - 機番登録申請書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 発注処理 - 契約書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 発注処理 - 押印申請書 - {purchase_id_vendor_product}.pdf",
+                          f"",
+                          f"## 取引完了処理",
+                          f"### 必須",
+                          f"- [ ] 取引完了処理 - 請求書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 支払申請書 - {purchase_id_vendor_product}.pdf",
+                          f"### その他",
+                          f"- [ ] 取引完了処理 - 納品書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 受領書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 検収書 - {purchase_id_vendor_product}.pdf",
+                          f"- [ ] 取引完了処理 - 完成報告書 - {purchase_id_vendor_product}.pdf",
+                      ]
+                  )
+                  update_issue(repository, github_token, issue_number, new_title, new_milestone, new_body)
+
+
+          if __name__ == "__main__":
+              main()

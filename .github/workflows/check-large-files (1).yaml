@@ -1,0 +1,17 @@
+name: check-large-files
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  check-large-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Check large files
+        run: |
+          if find . -type f -size +1M | grep -q "."; then
+            echo "Error: files over 1 MB exist"
+            find . -type f -size +1M
+            exit 1
+          fi
